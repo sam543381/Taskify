@@ -60,6 +60,8 @@ public class Loop {
 		Thread t = new Thread(() -> {
 			loop();
 		});
+		
+		t.start();
 
 		return t;
 	}
