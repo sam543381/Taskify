@@ -17,10 +17,16 @@ public abstract class Task {
 
 	/**
 	 * 
-	 * @param name The name of the task to create (printed in logs)
-	 * @param tries The number of times the system will try to execute the task if the exit code is not 0
-	 * @param interval The time to wait between each time the system tries to execute the task (in milliseconds)
-	 * @param logger A PrintStream object used for logging (optionnal)
+	 * @param name
+	 *            The name of the task to create (printed in logs)
+	 * @param tries
+	 *            The number of times the system will try to execute the task if
+	 *            the exit code is not 0
+	 * @param interval
+	 *            The time to wait between each time the system tries to execute
+	 *            the task (in milliseconds)
+	 * @param logger
+	 *            A PrintStream object used for logging (optionnal)
 	 */
 	public Task(String name, int tries, long interval, PrintStream logger) {
 		this.name = name;
@@ -31,9 +37,14 @@ public abstract class Task {
 
 	/**
 	 * 
-	 * @param name The name of the task to create (printed in logs)
-	 * @param tries The number of times the system will try to execute the task if the exit code is not 0
-	 * @param interval The time to wait between each time the system tries to execute the task (in milliseconds)
+	 * @param name
+	 *            The name of the task to create (printed in logs)
+	 * @param tries
+	 *            The number of times the system will try to execute the task if
+	 *            the exit code is not 0
+	 * @param interval
+	 *            The time to wait between each time the system tries to execute
+	 *            the task (in milliseconds)
 	 */
 	public Task(String name, int tries, long interval) {
 		this(name, tries, interval, System.out);
@@ -43,6 +54,7 @@ public abstract class Task {
 
 	/**
 	 * Executed by the system as the task
+	 * 
 	 * @return An exit code (-1 not possible)
 	 * @throws Exception
 	 */
@@ -50,7 +62,9 @@ public abstract class Task {
 
 	/**
 	 * Start the task execution
-	 * @return The task's last thrown exit code or -1. Can also return -2 to indicate to a loop to stop looping after this task
+	 * 
+	 * @return The task's last thrown exit code or -1. Can also return -2 to
+	 *         indicate to a loop to stop looping after this task
 	 * @see @see {@link fr.sam543381.taskify.Loop#loop()}
 	 */
 	public int execute() {
@@ -90,11 +104,16 @@ public abstract class Task {
 
 	/**
 	 * Asynchronous version of {@link #execute()}
+	 * 
 	 * @return The thread the task is executed by
 	 */
 	public Thread executeAsync() {
-		Thread t = new Thread(() -> {
-			execute();
+		Thread t = new Thread(new Runnable() {
+
+			public void run() {
+				execute();
+			}
+
 		});
 		t.start();
 		return t;
@@ -102,6 +121,7 @@ public abstract class Task {
 
 	/**
 	 * Used instead of return statement
+	 * 
 	 * @return A list of object representing the objects the tasks produces
 	 */
 	public List<Object> getResults() {

@@ -14,10 +14,15 @@ public class Loop {
 	protected int loops = 0;
 
 	/**
-	 * @param task The task to loop on
-	 * @param interval The time (in milliseconds) beetwen each execution
-	 * @param count The number of time the task must be executed (overriden if -2 is returned by the task)
-	 * @param name The loop name used by the logger (optionnal)
+	 * @param task
+	 *            The task to loop on
+	 * @param interval
+	 *            The time (in milliseconds) beetwen each execution
+	 * @param count
+	 *            The number of time the task must be executed (overriden if -2
+	 *            is returned by the task)
+	 * @param name
+	 *            The loop name used by the logger (optionnal)
 	 */
 	public Loop(Task task, long interval, int count, String name) {
 		this.task = task;
@@ -27,9 +32,13 @@ public class Loop {
 	}
 
 	/**
-	 * @param task The task to loop on
-	 * @param interval The time (in milliseconds) beetwen each execution
-	 * @param count The number of time the task must be executed (overriden if -2 is returned by the task)
+	 * @param task
+	 *            The task to loop on
+	 * @param interval
+	 *            The time (in milliseconds) beetwen each execution
+	 * @param count
+	 *            The number of time the task must be executed (overriden if -2
+	 *            is returned by the task)
 	 */
 	public Loop(Task task, long interval, int count) {
 		this(task, interval, count, null);
@@ -40,10 +49,10 @@ public class Loop {
 	 */
 	public void loop() {
 		while (loops < maxCount) {
-			
+
 			if (task.execute() == -2)
 				return;
-			
+
 			loops = maxCount == -1 ? loops : loops + 1;
 
 			if (maxCount == -1 && name != null)
@@ -53,14 +62,19 @@ public class Loop {
 
 	/**
 	 * Asynchronous version of {@link #loop()}
+	 * 
 	 * @return The thread the loop is executed by
 	 */
 	public Thread loopAsync() {
 
-		Thread t = new Thread(() -> {
-			loop();
+		Thread t = new Thread(new Runnable() {
+
+			public void run() {
+				loop();
+			}
+
 		});
-		
+
 		t.start();
 
 		return t;

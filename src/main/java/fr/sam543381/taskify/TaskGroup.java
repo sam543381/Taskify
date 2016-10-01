@@ -12,11 +12,18 @@ public class TaskGroup extends Task {
 	protected PrintStream logger;
 
 	/**
-	 * @param name The name of the task to create (printed in logs)
-	 * @param tries The number of times the system will try to execute the task if the exit code is not 0
-	 * @param interval The time to wait between each time the system tries to execute the task (in milliseconds)
-	 * @param logger A PrintStream object used for logging
-	 * @param tasks An array of tasks
+	 * @param name
+	 *            The name of the task to create (printed in logs)
+	 * @param tries
+	 *            The number of times the system will try to execute the task if
+	 *            the exit code is not 0
+	 * @param interval
+	 *            The time to wait between each time the system tries to execute
+	 *            the task (in milliseconds)
+	 * @param logger
+	 *            A PrintStream object used for logging
+	 * @param tasks
+	 *            An array of tasks
 	 */
 	public TaskGroup(String name, int tries, long interval, PrintStream logger, final Task[] tasks) {
 		super("(TaskGroup)" + name, tries, interval, logger);
@@ -25,10 +32,16 @@ public class TaskGroup extends Task {
 	}
 
 	/**
-	 * @param name The name of the task to create (printed in logs)
-	 * @param tries The number of times the system will try to execute the task if the exit code is not 0
-	 * @param interval The time to wait between each time the system tries to execute the task (in milliseconds)
-	 * @param tasks An array of tasks
+	 * @param name
+	 *            The name of the task to create (printed in logs)
+	 * @param tries
+	 *            The number of times the system will try to execute the task if
+	 *            the exit code is not 0
+	 * @param interval
+	 *            The time to wait between each time the system tries to execute
+	 *            the task (in milliseconds)
+	 * @param tasks
+	 *            An array of tasks
 	 */
 	public TaskGroup(String name, int tries, long interval, final Task[] tasks) {
 		this("(TaskGroup)" + name, tries, interval, System.out, tasks);
