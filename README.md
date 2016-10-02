@@ -1,4 +1,5 @@
 [![](https://jitpack.io/v/sam543381/Taskify.svg)](https://jitpack.io/#sam543381/Taskify)
+[![Build Status](https://travis-ci.org/sam543381/Taskify.svg?branch=master)](https://travis-ci.org/sam543381/Taskify)
 # Installation
 
 ## Maven
